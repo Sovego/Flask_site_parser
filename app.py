@@ -13,11 +13,10 @@ def download():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        data = request.form['input_data']
-        return process_data(data)
-    else:
+    if request.method != 'POST':
         return render_template('index.html')
+    data = request.form['input_data']
+    return process_data(data)
 
 
 def process_data(data):

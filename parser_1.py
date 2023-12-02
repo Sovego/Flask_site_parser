@@ -39,8 +39,13 @@ def parse(url):
             price.append(tmp.find_element(By.CLASS_NAME, 'product-buy__price').text)
         # Go to the next page
         try:
-            if (check(driver) and not (
-                    driver.find_element(By.CLASS_NAME, "pagination-widget__page_active").text == "1")):
+            if (
+                check(driver)
+                and driver.find_element(
+                    By.CLASS_NAME, "pagination-widget__page_active"
+                ).text
+                != "1"
+            ):
                 break
             next_page = driver.find_element(By.CLASS_NAME, 'pagination-widget__page-link_next')
             next_page.click()
